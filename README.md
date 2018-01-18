@@ -10,6 +10,7 @@ Added (cosmeticly edited) original Realtek_Changelog.txt, this README.md and dkm
 
 Added device USB IDs, sorted by ID number.
 Added LED control by Makefile, module parameter and dynamic /proc writing.
+Added VHT extras.
 
 ### Building
 
