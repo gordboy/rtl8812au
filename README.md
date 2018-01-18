@@ -11,6 +11,7 @@ Added (cosmeticly edited) original Realtek_Changelog.txt, this README.md and dkm
 Added device USB IDs, sorted by ID number.
 Added LED control by Makefile, module parameter and dynamic /proc writing.
 Added VHT extras.
+Added regdb files.
 
 ### Building
 
@@ -76,4 +77,12 @@ As others have noted, people using NetworkManager need to add this stanza to /et
 ```sh
   [device]
   wifi.scan-rand-mac-address=no
+```
+
+### Regdb files
+
+If needed, copy the regulatory database files in regdb/ to /lib/firmware/
+
+```sh
+$ sudo cp ./regdb/* /lib/firmware/
 ```
