@@ -8,6 +8,8 @@ Works fine with 4.13 kernel. Source now builds with no warnings or errors.
 
 Added (cosmeticly edited) original Realtek_Changelog.txt, this README.md and dkms.conf.
 
+Added device USB IDs, sorted by ID number.
+
 ### Building
 
 To build and install module manually:
