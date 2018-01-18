@@ -6121,4 +6121,55 @@ ssize_t proc_set_lck(struct file *file, const char __user *buffer, size_t count,
 }
 #endif /* CONFIG_DBG_RF_CAL */
 
+#ifdef CONFIG_LED_CONTROL
+int proc_get_led_enable(struct seq_file *m, void *v)
+{
+	struct net_device *dev = m->private;
+	_adapter *padapter = (_adapter *)rtw_netdev_priv(dev);
+	struct registry_priv	*pregpriv = &padapter->registrypriv;
+
+	if (pregpriv)
+		RTW_PRINT_SEL(m, "%d\n", pregpriv->led_enable);
+
+	return 0;
+}
+
+ssize_t proc_set_led_enable(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data)
+{
+	struct net_device *dev = data;
+	_adapter *padapter = (_adapter *)rtw_netdev_priv(dev);
+	struct registry_priv	*pregpriv = &padapter->registrypriv;
+	char tmp[32];
+	u32 mode;
+
+	if (count < 1)
+		return -EFAULT;
+
+	if (count > sizeof(tmp)) {
+		rtw_warn_on(1);
+		return -EFAULT;
+	}
+
+	if (buffer && !copy_from_user(tmp, buffer, count)) {
+
+		int num = sscanf(tmp, "%d ", &mode);
+
+		if (pregpriv && mode < 2) {
+			pregpriv->led_enable = (u8) mode;
+
+// FIXME need to initialize LEDS to current mode when turning on
+// Otherwise need to wait for next mode change
+
+      if (mode == 1)
+        LedControlUSB(padapter, LED_CTL_POWER_ON);
+      else
+        LedControlUSB(padapter, LED_CTL_POWER_OFF);
+
+			RTW_INFO("led_enable=%d\n", pregpriv->led_enable);
+		}
+	}
+
+	return count;
+}
+#endif //CONFIG_LED_CONTROL
 #endif /* CONFIG_PROC_DEBUG */

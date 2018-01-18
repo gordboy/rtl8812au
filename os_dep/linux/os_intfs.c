@@ -764,6 +764,16 @@ uint rtw_wakeup_event = RTW_WAKEUP_EVENT;
 module_param(rtw_wakeup_event, uint, 0644);
 #endif
 
+#ifdef CONFIG_LED_CONTROL
+#ifdef CONFIG_LED_ENABLE
+int rtw_led_enable = 1;
+#else
+int rtw_led_enable = 0;
+#endif //CONFIG_LED_ENABLE
+module_param(rtw_led_enable, int, 0644);
+MODULE_PARM_DESC(rtw_led_enable,"Enable status LED");
+#endif //CONFIG_LED_CONTROL
+
 void rtw_regsty_load_target_tx_power(struct registry_priv *regsty)
 {
 	int path, rs;
@@ -1125,6 +1135,11 @@ uint loadparam(_adapter *padapter)
 #ifdef CONFIG_AP_MODE
 	registry_par->bmc_tx_rate = rtw_bmc_tx_rate;
 #endif
+
+#ifdef CONFIG_LED_CONTROL
+  registry_par->led_enable = (u8)rtw_led_enable;
+#endif //CONFIG_LED_CONTROL
+
 	return status;
 }
 

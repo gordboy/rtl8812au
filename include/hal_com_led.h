@@ -386,11 +386,15 @@ extern void BlinkHandler(PLED_DATA	pLed);
 #endif /* CONFIG_RTW_LED */
 
 #if defined(CONFIG_RTW_LED) && defined(CONFIG_RTW_SW_LED)
+#ifdef CONFIG_LED_CONTROL
+void rtw_led_control(_adapter *adapter, LED_CTL_MODE LedAction);
+#else
 #define rtw_led_control(adapter, LedAction) \
 	do { \
 		if ((adapter)->ledpriv.LedControlHandler) \
 			(adapter)->ledpriv.LedControlHandler((adapter), (LedAction)); \
 	} while (0)
+#endif //CONFIG_LED_CONTROL
 #else
 #define rtw_led_control(adapter, LedAction) do {} while (0)
 #endif

@@ -17,6 +17,24 @@
 #include <hal_data.h>
 #ifdef CONFIG_RTW_SW_LED
 
+#ifdef CONFIG_LED_CONTROL
+void
+rtw_led_control(
+  _adapter *adapter,
+  LED_CTL_MODE LedAction
+)
+{
+  if (adapter->registrypriv.led_enable)
+  {
+    do
+    {
+      (adapter)->ledpriv.LedControlHandler((adapter), (LedAction));
+    }
+    while(0);
+  }
+}
+#endif //CONFIG_LED_CONTROL
+
 /*
  *	Description:
  *		Implementation of LED blinking behavior.

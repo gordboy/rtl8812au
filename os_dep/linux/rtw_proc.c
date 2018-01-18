@@ -2943,6 +2943,10 @@ const struct rtw_proc_hdl adapter_proc_hdls[] = {
 	RTW_PROC_HDL_SSEQ("dynamic_agg_enable", proc_get_dynamic_agg_enable, proc_set_dynamic_agg_enable),
 	RTW_PROC_HDL_SSEQ("iqk_fw_offload", proc_get_iqk_fw_offload, proc_set_iqk_fw_offload),
 
+#ifdef CONFIG_LED_CONTROL
+  RTW_PROC_HDL_SSEQ("led_enable", proc_get_led_enable, proc_set_led_enable),
+#endif //CONFIG_LED_CONTROL
+
 };
 
 const int adapter_proc_hdls_num = sizeof(adapter_proc_hdls) / sizeof(struct rtw_proc_hdl);

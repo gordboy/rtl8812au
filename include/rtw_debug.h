@@ -632,6 +632,11 @@ int proc_get_mcc_policy_table(struct seq_file *m, void *v);
 ssize_t proc_set_mcc_policy_table(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data);
 #endif /* CONFIG_MCC_MODE */
 
+#ifdef CONFIG_LED_CONTROL
+int proc_get_led_enable(struct seq_file *m, void *v);
+ssize_t proc_set_led_enable(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data);
+#endif //CONFIG_LED_CONTROL
+
 int proc_get_ack_timeout(struct seq_file *m, void *v);
 ssize_t proc_set_ack_timeout(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data);
 
