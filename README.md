@@ -1,10 +1,12 @@
 # rtl8812au
 
-## Realtek 8812AU driver version 5.2.20
+## Realtek 8812AU driver version 5.2.20.2
 
 Only supports 8812AU chipset. 
 
-Works fine with 4.15 kernel. Source now builds with no warnings or errors.
+Works fine with 4.18-rc2 kernel. Source now builds with no warnings or errors.
+
+Greatly improved stability due to huge rewrite of phydm - "4 second glitch" seems to have been fixed, or at least vastly reduced, in driver version 5.2.20.2.
 
 Added (cosmeticly edited) original Realtek_Changelog.txt, this README.md and dkms.conf.
 
