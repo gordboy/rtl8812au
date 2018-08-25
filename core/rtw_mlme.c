@@ -3657,9 +3657,9 @@ exit:
 /*
  * rtw_uapsd_use_default_setting
  * This function is used for setting default uapsd max sp length to uapsd_max_sp_len
- * in qos_priv data structure from registry. In additional, it will also map default uapsd 
- * ac to each uapsd TID, delivery-enabled and trigger-enabled of corresponding TID. 
- * 
+ * in qos_priv data structure from registry. In additional, it will also map default uapsd
+ * ac to each uapsd TID, delivery-enabled and trigger-enabled of corresponding TID.
+ *
  * Arguments:
  * @padapter: _adapter pointer.
  *
@@ -3674,7 +3674,7 @@ void	rtw_uapsd_use_default_setting(_adapter *padapter)
 
 	if (pregistrypriv->uapsd_ac_enable != 0) {
 		pqospriv->uapsd_max_sp_len = pregistrypriv->uapsd_max_sp_len;
-		
+
 		CLEAR_FLAGS(pqospriv->uapsd_tid);
 		CLEAR_FLAGS(pqospriv->uapsd_tid_delivery_enabled);
 		CLEAR_FLAGS(pqospriv->uapsd_tid_trigger_enabled);
@@ -3690,7 +3690,7 @@ void	rtw_uapsd_use_default_setting(_adapter *padapter)
 		}
 
 		/* check the uapsd setting of AC_VI from registry then map these setting to each TID if necessary  */
-		if(TEST_FLAG(pregistrypriv->uapsd_ac_enable, DRV_CFG_UAPSD_VI)) {	
+		if(TEST_FLAG(pregistrypriv->uapsd_ac_enable, DRV_CFG_UAPSD_VI)) {
 			SET_FLAG(pqospriv->uapsd_tid, WMM_TID5);
 			SET_FLAG(pqospriv->uapsd_tid_delivery_enabled, WMM_TID5);
 			SET_FLAG(pqospriv->uapsd_tid_trigger_enabled, WMM_TID5);
@@ -3719,7 +3719,7 @@ void	rtw_uapsd_use_default_setting(_adapter *padapter)
 			SET_FLAG(pqospriv->uapsd_tid_trigger_enabled, WMM_TID0);
 		}
 
-		RTW_INFO("[WMMPS] UAPSD MAX SP Len = 0x%02x, UAPSD TID enabled = 0x%02x\n", 
+		RTW_INFO("[WMMPS] UAPSD MAX SP Len = 0x%02x, UAPSD TID enabled = 0x%02x\n",
 			pqospriv->uapsd_max_sp_len, (u8)pqospriv->uapsd_tid);
 	}
 
@@ -3729,18 +3729,18 @@ void	rtw_uapsd_use_default_setting(_adapter *padapter)
  * rtw_is_wmmps_mode
  * This function is used for checking whether Driver and an AP support uapsd function or not.
  * If both of them support uapsd function, it will return true. Otherwise returns false.
- * 
+ *
  * Arguments:
  * @padapter: _adapter pointer.
  *
  * Auther: Arvin Liu
  * Date: 2017/06/12
  */
-bool rtw_is_wmmps_mode(_adapter *padapter) 
+bool rtw_is_wmmps_mode(_adapter *padapter)
 {
 	struct mlme_priv	*pmlmepriv = &(padapter->mlmepriv);
 	struct qos_priv	*pqospriv = &pmlmepriv->qospriv;
-		
+
 	if ((pqospriv->uapsd_ap_supported) && ((pqospriv->uapsd_tid & BIT_MASK_TID_TC)  != 0))
 		return _TRUE;
 
@@ -3783,16 +3783,16 @@ int rtw_restruct_wmm_ie(_adapter *adapter, u8 *in_ie, u8 *out_ie, uint in_len, u
 
 #ifdef CONFIG_WMMPS_STA
 			switch(pqospriv->uapsd_max_sp_len) {
-				case NO_LIMIT: 
+				case NO_LIMIT:
 					/* do nothing */
 					break;
-				case TWO_MSDU: 
+				case TWO_MSDU:
 					SET_FLAG(qos_info, BIT5);
 					break;
-				case FOUR_MSDU: 
+				case FOUR_MSDU:
 					SET_FLAG(qos_info, BIT6);
-					break;	
-				case SIX_MSDU: 
+					break;
+				case SIX_MSDU:
 					SET_FLAG(qos_info, BIT5);
 					SET_FLAG(qos_info, BIT6);
 					break;
@@ -3814,7 +3814,7 @@ int rtw_restruct_wmm_ie(_adapter *adapter, u8 *in_ie, u8 *out_ie, uint in_len, u
 			if((TEST_FLAG(pqospriv->uapsd_tid, WMM_TID3)) && (TEST_FLAG(pqospriv->uapsd_tid, WMM_TID0)))
 				SET_FLAG(qos_info, WMM_IE_UAPSD_BE);
 #endif /* CONFIG_WMMPS_STA */
-			
+
 			out_ie[initial_out_len + 8] = qos_info;
 
 			break;
@@ -4479,7 +4479,7 @@ void rtw_update_ht_cap(_adapter *padapter, u8 *pie, uint ie_len, u8 channel)
 			phtpriv->ampdu_enable = _TRUE;
 		} else
 			phtpriv->ampdu_enable = _TRUE;
-	} 
+	}
 
 
 	/* check Max Rx A-MPDU Size */

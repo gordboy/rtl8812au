@@ -826,7 +826,7 @@ int rtw_mp_disable_bt_coexist(struct net_device *dev,
 	u32 bt_coexist;
 
 	_rtw_memset(input, 0, sizeof(input));
-	
+
 	if (copy_from_user(input, wrqu->data.pointer, wrqu->data.length))
 		return -EFAULT;
 
@@ -2227,7 +2227,7 @@ int rtw_mp_SetBT(struct net_device *dev,
 		return -EFAULT;
 
 	*(extra + wrqu->data.length) = '\0';
-	
+
 	if (strlen(extra) < 1)
 		return -EFAULT;
 
