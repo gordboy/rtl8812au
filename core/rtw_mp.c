@@ -533,7 +533,7 @@ static void  PHY_SetRFPathSwitch(PADAPTER padapter , BOOLEAN bMain) {
 #ifdef CONFIG_RTL8188E
 		phy_set_rf_path_switch_8188e(padapter, bMain);
 #endif
-	} else if (IS_HARDWARE_TYPE_8814A(padapter)) {	
+	} else if (IS_HARDWARE_TYPE_8814A(padapter)) {
 #ifdef CONFIG_RTL8814A
 		phy_set_rf_path_switch_8814a(padapter, bMain);
 #endif
@@ -1789,7 +1789,7 @@ void SetPacketTx(PADAPTER padapter)
 	_rtw_memcpy(pattrib->ta, pattrib->src, ETH_ALEN);
 	_rtw_memcpy(pattrib->ra, pattrib->dst, ETH_ALEN);
 	bmcast = IS_MCAST(pattrib->ra);
-	if (bmcast) 
+	if (bmcast)
 		pattrib->psta = rtw_get_bcmc_stainfo(padapter);
 	else
 		pattrib->psta = rtw_get_stainfo(&padapter->stapriv, get_bssid(&padapter->mlmepriv));

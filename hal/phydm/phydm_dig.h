@@ -135,7 +135,7 @@ struct phydm_dig_struct {
 	u32		fa_start_timestamp;
 	u32		fa_end_timestamp;
 	u32		fa_acc_1sec_timestamp;
-#endif	
+#endif
 };
 
 struct phydm_fa_struct {

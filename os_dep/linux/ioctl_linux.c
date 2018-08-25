@@ -1008,8 +1008,8 @@ static int wpa_set_encryption(struct net_device *dev, struct ieee_param *param, 
 						}
 						padapter->securitypriv.binstallGrpkey = _TRUE;
 						/* DEBUG_ERR((" param->u.crypt.key_len=%d\n", param->u.crypt.key_len)); */
-						if (param->u.crypt.idx < 4) 
-							_rtw_memcpy(padapter->securitypriv.iv_seq[param->u.crypt.idx], param->u.crypt.seq, 8);							
+						if (param->u.crypt.idx < 4)
+							_rtw_memcpy(padapter->securitypriv.iv_seq[param->u.crypt.idx], param->u.crypt.seq, 8);
 						RTW_INFO(" ~~~~set sta key:groupkey\n");
 
 						padapter->securitypriv.dot118021XGrpKeyid = param->u.crypt.idx;
@@ -10275,7 +10275,7 @@ static int rtw_priv_mp_get(struct net_device *dev,
 	case  BT_EFUSE_FILE:
 		RTW_INFO("mp_get BT EFUSE_FILE\n");
 		rtw_bt_efuse_file_map(dev, info, wdata, extra);
-		break;	
+		break;
 	default:
 		return -EIO;
 	}
@@ -10514,7 +10514,7 @@ static int rtw_priv_get(struct net_device *dev,
 	if (subcmd < MP_NULL) {
 #ifdef CONFIG_MP_INCLUDED
 		rtw_priv_mp_get(dev, info, wdata, extra);
-#endif		
+#endif
 		return 0;
 	}
 
@@ -12020,7 +12020,7 @@ static int rtw_test(
 	}
 
 	pbuf[len] = '\0';
-	
+
 	RTW_INFO("%s: string=\"%s\"\n", __func__, pbuf);
 
 	ptmp = (char *)pbuf;
@@ -12416,7 +12416,7 @@ static iw_handler rtw_private_handler[] = {
 	rtw_wx_priv_null,				/* 0x19 */
 #ifdef CONFIG_MP_INCLUDED
 	rtw_wx_priv_null,				/* 0x1A */
-	rtw_wx_priv_null,				/* 0x1B */	
+	rtw_wx_priv_null,				/* 0x1B */
 #else
 	rtw_wx_priv_null,				/* 0x1A */
 	rtw_mp_efuse_get,				/* 0x1B */

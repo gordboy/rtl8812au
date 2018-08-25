@@ -1295,7 +1295,7 @@ void rtw_hal_c2h_pkt_pre_hdl(_adapter *adapter, u8 *buf, u16 len)
 	}
 
 	hdl_here = rtw_hal_c2h_id_handle_directly(adapter, id, seq, plen, payload) == _TRUE ? 1 : 0;
-	if (hdl_here) 
+	if (hdl_here)
 		ret = rtw_hal_c2h_handler(adapter, id, seq, plen, payload);
 	else
 		ret = rtw_c2h_packet_wk_cmd(adapter, buf, len);
@@ -1610,7 +1610,7 @@ int c2h_defeature_dbg_hdl(_adapter *adapter, u8 *data, u8 len)
 		RTW_PRINT("%s: 0x%02X\n", __func__, *(data + i));
 
 	ret = _SUCCESS;
-	
+
 exit:
 	return ret;
 }
@@ -2899,7 +2899,7 @@ void rtw_hal_rcr_set_chk_bssid(_adapter *adapter, u8 self_action)
 		|| MSTATE_SCAN_ENTER_NUM(&mstate)
 		|| hal_data->in_cta_test
 	)
-		rcr_new &= ~RCR_CBSSID_BCN;	
+		rcr_new &= ~RCR_CBSSID_BCN;
 	else
 		rcr_new |= RCR_CBSSID_BCN;
 #endif /* CONFIG_MI_WITH_MBSSID_CAM */
@@ -9816,7 +9816,7 @@ void rtw_hal_update_uapsd_tid(_adapter *adapter)
 	struct mlme_priv		*pmlmepriv = &adapter->mlmepriv;
 	struct qos_priv		*pqospriv = &pmlmepriv->qospriv;
 
-	/* write complement of pqospriv->uapsd_tid to mac register 0x693 because 
+	/* write complement of pqospriv->uapsd_tid to mac register 0x693 because
 	    it's designed  for "0" represents "enable" and "1" represents "disable" */
 	rtw_write8(adapter, REG_WMMPS_UAPSD_TID, (u8)(~pqospriv->uapsd_tid));
 }
@@ -10981,7 +10981,7 @@ u32 Hal_readPGDataFromConfigFile(PADAPTER padapter)
 	if (maplen < 256 || maplen > EEPROM_MAX_SIZE) {
 		RTW_ERR("eFuse length error :%d\n", maplen);
 		return _FALSE;
-	}	
+	}
 
 	ret = rtw_read_efuse_from_file(EFUSE_MAP_PATH, hal_data->efuse_eeprom_data, maplen);
 
@@ -12437,7 +12437,7 @@ void rtw_dump_phy_cap_by_hal(void *sel, _adapter *adapter)
 	phy_cap = _FALSE;
 	rtw_hal_get_def_var(adapter, HAL_DEF_RX_LDPC, (u8 *)&phy_cap);
 	RTW_PRINT_SEL(sel, "[HAL] LDPC Rx : %s\n\n", (_TRUE == phy_cap) ? "Supported" : "N/A");
-	
+
 	#ifdef CONFIG_BEAMFORMING
 	phy_cap = _FALSE;
 	rtw_hal_get_def_var(adapter, HAL_DEF_EXPLICIT_BEAMFORMER, (u8 *)&phy_cap);

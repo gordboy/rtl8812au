@@ -1115,7 +1115,7 @@ void halbtc8723b2ant_coex_table_with_type(IN struct btc_coexist *btcoexist,
 	case 17:
 		halbtc8723b2ant_coex_table(btcoexist, force_exec,
 				   0xffff55ff, 0xfafa5afa, 0xffffff, 0x3);
-		break;		
+		break;
 	default:
 		break;
 	}
