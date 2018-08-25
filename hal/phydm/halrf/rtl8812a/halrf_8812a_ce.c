@@ -485,7 +485,7 @@ void _iqk_tx_fill_iqc_8812a(
 )
 {
 	struct _hal_rf_	*p_rf = &(p_dm->rf_table);
-	
+
 	switch (path) {
 	case RF_PATH_A:
 	{
@@ -2081,7 +2081,7 @@ phy_dp_calibrate_8812a(
 {
 #if 0
 	struct _hal_rf_			*p_rf = &(p_dm->rf_table);
-	
+
 	p_rf->dpk_done = true;
 	ODM_RT_TRACE(p_dm, ODM_COMP_CALIBRATION, ODM_DBG_LOUD, ("===> phy_dp_calibrate_8812a\n"));
 	_phy_dp_calibrate_8812a(p_dm);

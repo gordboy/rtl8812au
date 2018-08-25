@@ -309,12 +309,12 @@ phydm_get_phy_statistic(
 	void		*p_dm_void
 );
 
-void 
+void
 phydm_basic_dbg_message(
 	void		*p_dm_void
 );
 
-void 
+void
 phydm_basic_profile(
 	void		*p_dm_void,
 	u32		*_used,

@@ -85,7 +85,7 @@ void _ips_enter(_adapter *padapter)
 		if (pwrpriv->ips_mode == IPS_LEVEL_2)
 			pwrpriv->bkeepfwalive = _TRUE;
 
-#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS		
+#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS
 		pwrpriv->pwr_saving_start_time = rtw_get_current_time();
 #endif /* CONFIG_RTW_CFGVEDNOR_LLSTATS */
 
@@ -124,8 +124,8 @@ int _ips_leave(_adapter *padapter)
 		result = rtw_ips_pwr_up(padapter);
 		if (result == _SUCCESS)
 			pwrpriv->rf_pwrstate = rf_on;
-		
-#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS	
+
+#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS
 		pwrpriv->pwr_saving_time += rtw_get_passing_time_ms(pwrpriv->pwr_saving_start_time);
 #endif /* CONFIG_RTW_CFGVEDNOR_LLSTATS */
 
@@ -812,7 +812,7 @@ void rtw_set_ps_mode(PADAPTER padapter, u8 ps_mode, u8 smart_ps, u8 bcn_ant_mode
 			return;
 
 #ifndef CONFIG_BT_COEXIST
-#ifdef CONFIG_WMMPS_STA	
+#ifdef CONFIG_WMMPS_STA
 		if (!rtw_is_wmmps_mode(padapter))
 #endif /* CONFIG_WMMPS_STA */
 			if ((pwrpriv->smart_ps == smart_ps) &&
@@ -982,10 +982,10 @@ void rtw_set_ps_mode(PADAPTER padapter, u8 ps_mode, u8 smart_ps, u8 bcn_ant_mode
 			pwrpriv->smart_ps = smart_ps;
 			pwrpriv->bcn_ant_mode = bcn_ant_mode;
 
-#ifdef CONFIG_WMMPS_STA	
+#ifdef CONFIG_WMMPS_STA
 			pwrpriv->wmm_smart_ps = pregistrypriv->wmm_smart_ps;
 #endif /* CONFIG_WMMPS_STA */
-			
+
 			rtw_hal_set_hwreg(padapter, HW_VAR_H2C_FW_PWRMODE, (u8 *)(&ps_mode));
 
 #ifdef CONFIG_P2P_PS
@@ -1115,10 +1115,10 @@ void LPS_Enter(PADAPTER padapter, const char *msg)
 				if (rtw_is_wmmps_mode(padapter))
 					msg = "WMMPS_IDLE";
 #endif /* CONFIG_WMMPS_STA */
-				
+
 				sprintf(buf, "WIFI-%s", msg);
 				pwrpriv->bpower_saving = _TRUE;
-				
+
 #ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS
 				pwrpriv->pwr_saving_start_time = rtw_get_current_time();
 #endif /* CONFIG_RTW_CFGVEDNOR_LLSTATS */
@@ -1163,11 +1163,11 @@ void LPS_Leave(PADAPTER padapter, const char *msg)
 			if (rtw_is_wmmps_mode(padapter))
 				msg = "WMMPS_BUSY";
 #endif /* CONFIG_WMMPS_STA */
-			
+
 			sprintf(buf, "WIFI-%s", msg);
 			rtw_set_ps_mode(padapter, PS_MODE_ACTIVE, 0, 0, buf);
 
-#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS	
+#ifdef CONFIG_RTW_CFGVEDNOR_LLSTATS
 			pwrpriv->pwr_saving_time += rtw_get_passing_time_ms(pwrpriv->pwr_saving_start_time);
 #endif /* CONFIG_RTW_CFGVEDNOR_LLSTATS */
 

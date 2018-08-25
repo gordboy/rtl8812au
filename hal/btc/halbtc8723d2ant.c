@@ -7389,7 +7389,7 @@ void ex_halbtc8723d2ant_antenna_detection(IN struct btc_coexist *btcoexist,
 				} else
 					board_info->antdetval =
 						psd_scan->ant_det_psd_scan_peak_val/100;
-				
+
 				board_info->btdm_ant_det_complete_fail = FALSE;
 
 			} else {

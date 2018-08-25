@@ -1125,7 +1125,7 @@ u8 halbtcoutsrc_Get(void *pBtcContext, u8 getType, void *pOutBuf)
 #ifdef CONFIG_P2P
 		{
 			struct wifidirect_info *pwdinfo = &(padapter->wdinfo);
-			
+
 			*pU1Tmp = pwdinfo->operating_channel;
 		}
 #else
@@ -1654,7 +1654,7 @@ void halbtcoutsrc_DisplayWifiStatus(PBTC_COEXIST pBtCoexist)
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_BL_WIFI_ROAM, &bRoam);
 	CL_SPRINTF(cliBuf, BT_TMP_BUF_SIZE, "\r\n %-35s = %d/ %d/ %d ", "Link/ Roam/ Scan",
 		bLink, bRoam, bScan);
-	CL_PRINTF(cliBuf);	
+	CL_PRINTF(cliBuf);
 
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_U4_WIFI_IQK_TOTAL, &iqk_cnt_total);
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_U4_WIFI_IQK_OK, &iqk_cnt_ok);
@@ -1663,7 +1663,7 @@ void halbtcoutsrc_DisplayWifiStatus(PBTC_COEXIST pBtCoexist)
 		"IQK All/ OK/ Fail/AutoLoad/FWDL", iqk_cnt_total, iqk_cnt_ok, iqk_cnt_fail,
 		((halbtcoutsrc_is_autoload_fail(pBtCoexist) == _TRUE) ? "fail":"ok"), ((halbtcoutsrc_is_fw_ready(pBtCoexist) == _TRUE) ? "ok":"fail"));
 	CL_PRINTF(cliBuf);
-	
+
 	if (wifiLinkStatus & WIFI_STA_CONNECTED) {
 		CL_SPRINTF(cliBuf, BT_TMP_BUF_SIZE, "\r\n %-35s = %s", "IOT Peer", GLBtcIotPeerString[padapter->mlmeextpriv.mlmext_info.assoc_AP_vendor]);
 		CL_PRINTF(cliBuf);
@@ -1672,8 +1672,8 @@ void halbtcoutsrc_DisplayWifiStatus(PBTC_COEXIST pBtCoexist)
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_S4_WIFI_RSSI, &wifiRssi);
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_U1_WIFI_DOT11_CHNL, &wifiChnl);
 	pBtCoexist->btc_get(pBtCoexist, BTC_GET_U2_BEACON_PERIOD, &wifiBcnInterval);
-	if ((wifiLinkStatus & WIFI_P2P_GO_CONNECTED) || (wifiLinkStatus & WIFI_P2P_GC_CONNECTED)) 
-		pBtCoexist->btc_get(pBtCoexist, BTC_GET_U1_WIFI_P2P_CHNL, &wifiP2PChnl);	
+	if ((wifiLinkStatus & WIFI_P2P_GO_CONNECTED) || (wifiLinkStatus & WIFI_P2P_GC_CONNECTED))
+		pBtCoexist->btc_get(pBtCoexist, BTC_GET_U1_WIFI_P2P_CHNL, &wifiP2PChnl);
 	CL_SPRINTF(cliBuf, BT_TMP_BUF_SIZE, "\r\n %-35s = %d dBm/ %d/ %d/ %d", "RSSI/ STA_Chnl/ P2P_Chnl/ BI",
 		wifiRssi-100, wifiChnl, wifiP2PChnl, wifiBcnInterval);
 	CL_PRINTF(cliBuf);
@@ -1967,7 +1967,7 @@ halbtcoutsrc_SetBtTRXMASK(
 		bStatus = NDBG_SetBtTRXMASK(Adapter, 2, bt_trx_mask, &btCanTx);
 	}
 
-	
+
 	if (bStatus)
 		return TRUE;
 	else
@@ -2013,7 +2013,7 @@ u16 halbtcoutsrc_GetBtReg_with_status(void *pBtcContext, u8 RegType, u32 RegAddr
 u32 halbtcoutsrc_GetBtReg(void *pBtcContext, u8 RegType, u32 RegAddr)
 {
 	u32 regVal;
-	
+
 	return (BT_STATUS_BT_OP_SUCCESS == halbtcoutsrc_GetBtReg_with_status(pBtcContext, RegType, RegAddr, &regVal)) ? regVal : 0xffffffff;
 }
 
@@ -2210,7 +2210,7 @@ u32 halbtcoutsrc_GetBleScanParaFromBt(void *pBtcContext, u8 scanType)
 		_irqL irqL;
 		u8 op_code;
 		u8 status;
-		
+
 
 		_enter_critical_mutex(&GLBtcBtMpOperLock, &irqL);
 
@@ -3298,7 +3298,7 @@ void EXhalbtcoutsrc_WlFwDbgInfoNotify(PBTC_COEXIST pBtCoexist, u8* tmpBuf, u8 le
 {
 	if (!halbtcoutsrc_IsBtCoexistAvailable(pBtCoexist))
 		return;
-	
+
 	if (IS_HARDWARE_TYPE_8703B(pBtCoexist->Adapter)) {
 		if (pBtCoexist->board_info.btdm_ant_num == 1)
 			ex_halbtc8703b1ant_wl_fwdbginfo_notify(pBtCoexist, tmpBuf, length);
@@ -3913,7 +3913,7 @@ void EXhalbtcoutsrc_switchband_notify(struct btc_coexist *pBtCoexist, u8 type)
 {
 	if(!halbtcoutsrc_IsBtCoexistAvailable(pBtCoexist))
 		return;
-	
+
 	if(pBtCoexist->manual_control)
 		return;
 
@@ -4077,7 +4077,7 @@ u8 EXhalbtcoutsrc_rate_id_to_btc_rate_id(u8 rate_id)
 		case DESC_RATEMCS31:
 			btc_rate_id = BTC_MCS_31;
 			break;
-			
+
 		case DESC_RATEVHTSS1MCS0:
 			btc_rate_id = BTC_VHT_1SS_MCS_0;
 			break;
@@ -4202,7 +4202,7 @@ u8 EXhalbtcoutsrc_rate_id_to_btc_rate_id(u8 rate_id)
 			btc_rate_id = BTC_VHT_4SS_MCS_9;
 			break;
 	}
-	
+
 	return btc_rate_id;
 }
 
@@ -4322,7 +4322,7 @@ u8 hal_btcoex_Initialize(PADAPTER padapter)
 	hal_btcoex_SetBTCoexist(padapter, rtw_btcoex_get_bt_coexist(padapter));
 	hal_btcoex_SetChipType(padapter, rtw_btcoex_get_chip_type(padapter));
 	hal_btcoex_SetPgAntNum(padapter, rtw_btcoex_get_pg_ant_num(padapter));
-	
+
 	ret = EXhalbtcoutsrc_InitlizeVariables((void *)padapter);
 
 	return ret;
@@ -4527,7 +4527,7 @@ u8 hal_btcoex_IsBtControlLps(PADAPTER padapter)
 {
 	if (GLBtCoexist.bdontenterLPS == _TRUE)
 		return _TRUE;
-	
+
 	if (hal_btcoex_IsBtExist(padapter) == _FALSE)
 		return _FALSE;
 
@@ -4544,7 +4544,7 @@ u8 hal_btcoex_IsLpsOn(PADAPTER padapter)
 {
 	if (GLBtCoexist.bdontenterLPS == _TRUE)
 		return _FALSE;
-	
+
 	if (hal_btcoex_IsBtExist(padapter) == _FALSE)
 		return _FALSE;
 

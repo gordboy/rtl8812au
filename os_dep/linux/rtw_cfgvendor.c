@@ -1139,7 +1139,7 @@ static void LinkLayerStats(_adapter *padapter)
 	u32 ps_time, trx_total_time;
 	u64 tx_bytes, rx_bytes, trx_total_bytes = 0;
 	u64 tmp = 0;
-	
+
 	RTW_DBG("%s adapter type : %u\n", __func__, padapter->adapter_type);
 
 	tx_bytes = 0;
@@ -1156,7 +1156,7 @@ static void LinkLayerStats(_adapter *padapter)
 				pwrpriv->pwr_saving_time += rtw_get_passing_time_ms(pwrpriv->pwr_saving_start_time);
 				pwrpriv->pwr_saving_start_time = rtw_get_current_time();
 			}
-		} else {		
+		} else {
 #ifdef CONFIG_IPS
 			if ( pwrpriv->bpower_saving == _TRUE ) {
 				pwrpriv->pwr_saving_time += rtw_get_passing_time_ms(pwrpriv->pwr_saving_start_time);
@@ -1174,11 +1174,11 @@ static void LinkLayerStats(_adapter *padapter)
 			ps_time = pwrpriv->on_time;
 
 		tx_bytes = pdvobjpriv->traffic_stat.last_tx_bytes;
-		rx_bytes = pdvobjpriv->traffic_stat.last_rx_bytes;		
+		rx_bytes = pdvobjpriv->traffic_stat.last_rx_bytes;
 		trx_total_bytes = tx_bytes + rx_bytes;
 
 		trx_total_time = pwrpriv->on_time - ps_time;
-		
+
 		if ( trx_total_bytes == 0) {
 			pwrpriv->tx_time = 0;
 			pwrpriv->rx_time = 0;
@@ -1186,29 +1186,29 @@ static void LinkLayerStats(_adapter *padapter)
 
 			/* tx_time = (trx_total_time * tx_total_bytes) / trx_total_bytes; */
 			/* rx_time = (trx_total_time * rx_total_bytes) / trx_total_bytes; */
-		
+
 			tmp = (tx_bytes * trx_total_time);
 			tmp = rtw_division64(tmp, trx_total_bytes);
 			pwrpriv->tx_time = tmp;
 
 			tmp = (rx_bytes * trx_total_time);
 			tmp = rtw_division64(tmp, trx_total_bytes);
-			pwrpriv->rx_time = tmp;		
+			pwrpriv->rx_time = tmp;
 
 		}
-		
+
 	}
 	else {
 			pwrpriv->on_time = 0;
 			pwrpriv->tx_time = 0;
-			pwrpriv->rx_time = 0;	
+			pwrpriv->rx_time = 0;
 	}
 
 #ifdef CONFIG_RTW_WIFI_HAL_DEBUG
 		RTW_INFO("- tx_bytes : %llu rx_bytes : %llu total bytes : %llu\n", tx_bytes, rx_bytes, trx_total_bytes);
 		RTW_INFO("- netif_up=%s, on_time : %u ms\n", padapter->netif_up ? "1":"0", pwrpriv->on_time);
 		RTW_INFO("- pwr_saving_time : %u (%u) ms\n", pwrpriv->pwr_saving_time, ps_time);
-		RTW_INFO("- trx_total_time : %u ms\n", trx_total_time);		
+		RTW_INFO("- trx_total_time : %u ms\n", trx_total_time);
 		RTW_INFO("- tx_time : %u ms\n", pwrpriv->tx_time);
 		RTW_INFO("- rx_time : %u ms\n", pwrpriv->rx_time);
 #endif /* CONFIG_RTW_WIFI_HAL_DEBUG */
@@ -1216,7 +1216,7 @@ static void LinkLayerStats(_adapter *padapter)
 }
 
 #define DUMMY_TIME_STATICS 99
-static int rtw_cfgvendor_lstats_get_info(struct wiphy *wiphy,	
+static int rtw_cfgvendor_lstats_get_info(struct wiphy *wiphy,
 	struct wireless_dev *wdev, const void  *data, int len)
 {
 	int err = 0;
@@ -1237,12 +1237,12 @@ static int rtw_cfgvendor_lstats_get_info(struct wiphy *wiphy,
 	radio->radio = 1;
 
 	/* to get on_time, tx_time, rx_time */
-	LinkLayerStats(padapter); 
-	
+	LinkLayerStats(padapter);
+
 	radio->on_time = pwrpriv->on_time;
 	radio->tx_time = pwrpriv->tx_time;
 	radio->rx_time = pwrpriv->rx_time;
-	
+
 	radio->num_tx_levels = 1;
 	radio->tx_time_per_levels = NULL;
 	radio->tx_time_per_levels = (u32*)(output+sizeof(wifi_radio_stat) + sizeof(wifi_iface_stat));
@@ -1264,9 +1264,9 @@ static int rtw_cfgvendor_lstats_get_info(struct wiphy *wiphy,
 	RTW_INFO("radio->rx_time :  %u ms\n", (radio->rx_time));
 	RTW_INFO("radio->tx_time_per_levels value :  %u ms\n", *(radio->tx_time_per_levels));
 	#endif /* CONFIG_RTW_WIFI_HAL_DEBUG */
-	
+
 	RTW_DBG(FUNC_NDEV_FMT" %s\n", FUNC_NDEV_ARG(wdev_to_ndev(wdev)), (char*)data);
-	err =  rtw_cfgvendor_send_cmd_reply(wiphy, wdev_to_ndev(wdev), 
+	err =  rtw_cfgvendor_send_cmd_reply(wiphy, wdev_to_ndev(wdev),
 		output, sizeof(wifi_iface_stat) + sizeof(wifi_radio_stat)+1);
 	if (unlikely(err))
 		RTW_ERR(FUNC_NDEV_FMT"Vendor Command reply failed ret:%d \n"
@@ -1274,14 +1274,14 @@ static int rtw_cfgvendor_lstats_get_info(struct wiphy *wiphy,
 	rtw_mfree(output, sizeof(wifi_iface_stat) + sizeof(wifi_radio_stat)+1);
 	return err;
 }
-static int rtw_cfgvendor_lstats_set_info(struct wiphy *wiphy,	
+static int rtw_cfgvendor_lstats_set_info(struct wiphy *wiphy,
 	struct wireless_dev *wdev, const void  *data, int len)
 {
 	int err = 0;
 	RTW_INFO("%s\n", __func__);
 	return err;
 }
-static int rtw_cfgvendor_lstats_clear_info(struct wiphy *wiphy,	
+static int rtw_cfgvendor_lstats_clear_info(struct wiphy *wiphy,
 	struct wireless_dev *wdev, const void  *data, int len)
 {
 	int err = 0;

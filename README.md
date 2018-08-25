@@ -2,7 +2,7 @@
 
 ## Realtek 8812AU driver version 5.2.20.2
 
-Only supports 8812AU chipset. 
+Only supports 8812AU chipset.
 
 Works fine with 4.18-rc2 kernel. Source now builds with no warnings or errors.
 
@@ -32,7 +32,7 @@ To use dkms install:
 ```sh
 $ sudo dkms add -m rtl8812au -v 5.2.20
 $ sudo dkms build -m rtl8812au -v 5.2.20
-$ sudo dkms install -m rtl8812au -v 5.2.20 
+$ sudo dkms install -m rtl8812au -v 5.2.20
 ```
 
 To use dkms uninstall and remove:
