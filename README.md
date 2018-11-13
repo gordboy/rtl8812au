@@ -4,7 +4,7 @@
 
 Only supports 8812AU chipset.
 
-Works fine with 4.19-rc1 kernel. Source now builds with no warnings or errors.
+Works fine with 4.20-rc2 kernel. Source now builds with no warnings or errors.
 
 Greatly improved stability due to huge rewrite of phydm - "4 second glitch" seems to have been fixed, or at least vastly reduced, in driver version 5.2.20.2.
 
