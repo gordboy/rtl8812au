@@ -165,6 +165,7 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
   {USB_DEVICE(0x04BB, 0x0952), .driver_info = RTL8812}, /* I-O DATA - Edimax */
   {USB_DEVICE(0x050D, 0x1106), .driver_info = RTL8812}, /* Belkin - Sercomm */
   {USB_DEVICE(0x050D, 0x1109), .driver_info = RTL8812}, /* Belkin - SerComm F9L1109 */
+  {USB_DEVICE(0x2604, 0x0012), .driver_info = RTL8812}, /* Tenda U12*/
   {USB_DEVICE(0x0586, 0x3426), .driver_info = RTL8812}, /* ZyXEL - */
   {USB_DEVICE(0x0789, 0x016E), .driver_info = RTL8812}, /* Logitec - Edimax */
   {USB_DEVICE(0x07B8, 0x8812), .driver_info = RTL8812}, /* Abocom - Abocom */
