@@ -2072,6 +2072,10 @@ static int writeFile(struct file *fp, char *buf, int len)
 
 }
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0))
+  #define get_ds() (KERNEL_DS)
+#endif
+
 /*
 * Test if the specifi @param path is a file and readable
 * If readable, @param sz is got
